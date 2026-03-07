@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>text-align vs align-items examples</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .demo {
+        border: 2px solid #999;
+        height: 150px;
+        width: 420px;
+        margin: 14px 0;
+        padding: 10px;
+        position: relative;
+      }
+
+      .label {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      img {
+        height: 75px;
+      }
+
+      /* ---------------------------
+         1) text-align (horizontal only)
+         --------------------------- */
+      .text-align-center {
+        text-align: center; /* centers inline content horizontally */
+      }
+
+      /* "Fake vertical" using padding (not true centering) */
+      .text-align-center-padding {
+        text-align: center;
+        padding-top: 25px; /* pushes content down manually */
+      }
+
+      /* ---------------------------
+         2) Flex: align-items + justify-content
+         --------------------------- */
+      .flex-center-both {
+        display: flex;
+        justify-content: center; /* horizontal */
+        align-items: center;     /* vertical */
+      }
+
+      .flex-center-horiz-only {
+        display: flex;
+        justify-content: center; /* horizontal */
+        /* vertical stays at default (stretch) */
+      }
+
+      .flex-center-vert-only {
+        display: flex;
+        align-items: center; /* vertical */
+        /* horizontal stays at default (flex-start) */
+      }
+
+      /* Example where text-align is useful INSIDE a flex item */
+      .flex-with-text-align-inside {
+        display: flex;
+        gap: 10px;
+      }
+
+      .side {
+        border: 2px dashed #bbb;
+        flex: 1;
+        padding: 10px;
+      }
+
+      .side.center-text {
+        text-align: center; /* centers text + inline image inside this flex item */
+      }
+
+      .side.right-text {
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 1) text-align: horizontal center only -->
+    <div class="demo text-align-center">
+      <div class="label">1) text-align: center (horizontal only)</div>
+      <img src="images\products\backpack.jpg" alt="backpack" />
+    </div>
+
+    <!-- 1b) text-align + padding-top (manual vertical push, not true centering) -->
+    <div class="demo text-align-center-padding">
+      <div class="label">2) text-align: center + padding-top (manual vertical push)</div>
+      <img src="images\products\backpack.jpg" alt="backpack" />
+    </div>
+
+    <!-- 2) Flex: center both -->
+    <div class="demo flex-center-both">
+      <div class="label" style="position:absolute; top: 25px; "">
+        3) Flex: justify-content + align-items (true center both)
+      </div>
+      <img src="images\products\backpack.jpg" alt="backpack" />
+    </div>
+
+    <!-- 2b) Flex: center horizontally only -->
+    <div class="demo flex-center-horiz-only">
+      <div class="label">4) Flex: justify-content center (horizontal only)</div>
+      <img src="images\products\backpack.jpg" alt="backpack" />
+    </div>
+
+    <!-- 2c) Flex: center vertically only -->
+    <div class="demo flex-center-vert-only">
+      <div class="label">5) Flex: align-items center (vertical only)</div>
+      <img src="images\products\backpack.jpg" alt="backpack" />
+    </div>
+
+    <!-- 3) Flex with multiple divs, showing text-align inside flex items -->
+    <div class="demo flex-with-text-align-inside" style="height: 180px;">
+      <div class="side">
+        <div class="label">6) Flex item (default)</div>
+        <img src="images\products\backpack.jpg" alt="backpack" />
+        <div>Text stays left by default</div>
+      </div>
+
+      <div class="side center-text">
+        <div class="label">7) Flex item + text-align:center</div>
+        <img src="images\products\backpack.jpg" alt="backpack" />
+        <div>Text + image centered</div>
+      </div>
+
+      <div class="side right-text">
+        <div class="label">8) Flex item + text-align:right</div>
+        <img src="images\products\backpack.jpg" alt="backpack" />
+        <div>Text + image right</div>
+      </div>
+    </div>
+  </body>
+</html>
